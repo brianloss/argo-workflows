@@ -32,6 +32,7 @@ Add the following to your `/etc/hosts`:
 127.0.0.1 minio
 127.0.0.1 postgres
 127.0.0.1 mysql
+127.0.0.1 devstoreaccount1
 ```
 
 To run the controller and argo-server API locally, with MinIO inside the "argo" namespace of your cluster:

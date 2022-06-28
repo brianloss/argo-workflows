@@ -137,6 +137,30 @@ func TestSubPathResolution(t *testing.T) {
       name: my-gcs-cred
   `
 
+	AzureBlobArtifact := `
+  name: azure-blob-artifact
+  path: some/local/path
+  azureBlob:
+    endpoint: https://myaccount.blob.core.windows.net/
+    container: test-container
+    blob: /path/to/some/key
+    accountKeySecret:
+      key: accesskey
+      name: my-azure-cred
+  `
+
+	AzureBlobArtifactWithSubpath := `
+  name: azure-blob-artifact
+  path: some/local/path
+  azureBlob:
+    endpoint: https://myaccount.blob.core.windows.net/
+    container: test-container
+    blob: /path/to/some/key/some/subkey
+    accountKeySecret:
+      key: accesskey
+      name: my-azure-cred
+  `
+
 	HDFSArtifact := `
   name: hdfs-artifact
   path: some/local/path
@@ -219,6 +243,9 @@ func TestSubPathResolution(t *testing.T) {
 	})
 	t.Run("Artifactory Artifact SubPath Resolution", func(t *testing.T) {
 		artifactSubPathResolution(t, ArtifactoryArtifact, ArtifactoryArtifactWithSubpath)
+	})
+	t.Run("AzureBlob Artifact SubPath Resolution", func(t *testing.T) {
+		artifactSubPathResolution(t, AzureBlobArtifact, AzureBlobArtifactWithSubpath)
 	})
 	t.Run("GCS Artifact SubPath Resolution", func(t *testing.T) {
 		artifactSubPathResolution(t, GCSArtifact, GCSArtifactWithSubpath)

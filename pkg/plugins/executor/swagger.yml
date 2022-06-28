@@ -96,6 +96,8 @@ definitions:
         type: boolean
       artifactory:
         $ref: '#/definitions/ArtifactoryArtifact'
+      azureBlob:
+        $ref: '#/definitions/AzureBlobArtifact'
       from:
         description: From allows an artifact to reference an artifact from a previous
           step
@@ -158,6 +160,8 @@ definitions:
         type: boolean
       artifactory:
         $ref: '#/definitions/ArtifactoryArtifact'
+      azureBlob:
+        $ref: '#/definitions/AzureBlobArtifact'
       gcs:
         $ref: '#/definitions/GCSArtifact'
       git:
@@ -184,6 +188,8 @@ definitions:
         type: boolean
       artifactory:
         $ref: '#/definitions/ArtifactoryArtifact'
+      azureBlob:
+        $ref: '#/definitions/AzureBlobArtifact'
       from:
         description: From allows an artifact to reference an artifact from a previous
           step
@@ -250,6 +256,27 @@ definitions:
     items:
       $ref: '#/definitions/Artifact'
     type: array
+  AzureBlobArtifact:
+    description: AzureBlobArtifact is the location of a an Azure Blob Storage artifact
+    properties:
+      accountKeySecret:
+        $ref: '#/definitions/SecretKeySelector'
+      blob:
+        description: Blob is the blob name (i.e., path) in the container where the
+          artifact resides
+        type: string
+      container:
+        description: Container is the container where resources will be stored
+        type: string
+      endpoint:
+        description: Endpoint is the service url associated with an account. It is
+          most likely "https://<ACCOUNT_NAME>.blob.core.windows.net"
+        type: string
+      useSDKCreds:
+        description: UseSDKCreds tells the driver to figure out credentials based
+          on sdk defaults.
+        type: boolean
+    type: object
   AzureDataDiskCachingMode:
     type: string
   AzureDataDiskKind:

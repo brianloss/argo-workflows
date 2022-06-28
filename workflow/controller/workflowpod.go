@@ -1267,6 +1267,8 @@ func createArchiveLocationSecret(tmpl *wfv1.Template, volMap map[string]apiv1.Vo
 		createSecretVal(volMap, ossRepo.SecretKeySecret, uniqueKeyMap)
 	} else if gcsRepo := tmpl.ArchiveLocation.GCS; gcsRepo != nil {
 		createSecretVal(volMap, gcsRepo.ServiceAccountKeySecret, uniqueKeyMap)
+	} else if azureBlobRepo := tmpl.ArchiveLocation.AzureBlob; azureBlobRepo != nil {
+		createSecretVal(volMap, azureBlobRepo.AccountKeySecret, uniqueKeyMap)
 	}
 }
 
@@ -1289,6 +1291,8 @@ func createSecretVolume(volMap map[string]apiv1.Volume, art wfv1.Artifact, keyMa
 		createSecretVal(volMap, art.OSS.SecretKeySecret, keyMap)
 	} else if art.GCS != nil {
 		createSecretVal(volMap, art.GCS.ServiceAccountKeySecret, keyMap)
+	} else if art.AzureBlob != nil {
+		createSecretVal(volMap, art.AzureBlob.AccountKeySecret, keyMap)
 	}
 }
 

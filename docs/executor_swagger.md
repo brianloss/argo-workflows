@@ -202,6 +202,7 @@ It will marshall back to string - marshalling is not symmetric. |  |
 | archive | [ArchiveStrategy](#archive-strategy)| `ArchiveStrategy` |  | |  |  |
 | archiveLogs | boolean| `bool` |  | | ArchiveLogs indicates if the container logs should be archived |  |
 | artifactory | [ArtifactoryArtifact](#artifactory-artifact)| `ArtifactoryArtifact` |  | |  |  |
+| azureBlob | [AzureBlobArtifact](#azure-blob-artifact)| `AzureBlobArtifact` |  | |  |  |
 | from | string| `string` |  | | From allows an artifact to reference an artifact from a previous step |  |
 | fromExpression | string| `string` |  | | FromExpression, if defined, is evaluated to specify the value for the artifact |  |
 | gcs | [GCSArtifact](#g-c-s-artifact)| `GCSArtifact` |  | |  |  |
@@ -241,6 +242,7 @@ of a single workflow step, which the executor will use as a default location to 
 |------|------|---------|:--------:| ------- |-------------|---------|
 | archiveLogs | boolean| `bool` |  | | ArchiveLogs indicates if the container logs should be archived |  |
 | artifactory | [ArtifactoryArtifact](#artifactory-artifact)| `ArtifactoryArtifact` |  | |  |  |
+| azureBlob | [AzureBlobArtifact](#azure-blob-artifact)| `AzureBlobArtifact` |  | |  |  |
 | gcs | [GCSArtifact](#g-c-s-artifact)| `GCSArtifact` |  | |  |  |
 | git | [GitArtifact](#git-artifact)| `GitArtifact` |  | |  |  |
 | hdfs | [HDFSArtifact](#h-d-f-s-artifact)| `HDFSArtifact` |  | |  |  |
@@ -268,6 +270,7 @@ of a single workflow step, which the executor will use as a default location to 
 | archive | [ArchiveStrategy](#archive-strategy)| `ArchiveStrategy` |  | |  |  |
 | archiveLogs | boolean| `bool` |  | | ArchiveLogs indicates if the container logs should be archived |  |
 | artifactory | [ArtifactoryArtifact](#artifactory-artifact)| `ArtifactoryArtifact` |  | |  |  |
+| azureBlob | [AzureBlobArtifact](#azure-blob-artifact)| `AzureBlobArtifact` |  | |  |  |
 | from | string| `string` |  | | From allows an artifact to reference an artifact from a previous step |  |
 | fromExpression | string| `string` |  | | FromExpression, if defined, is evaluated to specify the value for the artifact |  |
 | gcs | [GCSArtifact](#g-c-s-artifact)| `GCSArtifact` |  | |  |  |
@@ -315,6 +318,28 @@ set when loading input artifacts. |  |
   
 
 [][Artifact](#artifact)
+
+### <span id="azure-blob-artifact"></span> AzureBlobArtifact
+
+
+> AzureBlobArtifact is the location of a an Azure Blob Storage artifact
+  
+
+
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| accountKeySecret | [SecretKeySelector](#secret-key-selector)| `SecretKeySelector` |  | |  |  |
+| blob | string| `string` |  | | Blob is the blob name (i.e., path) in the container where the artifact resides |  |
+| container | string| `string` |  | | Container is the container where resources will be stored |  |
+| endpoint | string| `string` |  | | Endpoint is the service url associated with an account. It is most likely "https://<ACCOUNT_NAME>.blob.core.windows.net" |  |
+| useSDKCreds | boolean| `bool` |  | | UseSDKCreds tells the driver to figure out credentials based on sdk defaults. |  |
+
+
 
 ### <span id="azure-data-disk-caching-mode"></span> AzureDataDiskCachingMode
 
